@@ -5,8 +5,8 @@ on:
     branches: [ main ]
   schedule:
     - cron: "0 * * * *"
-jobs:
 
+jobs:
   build:
     runs-on: ubuntu-latest
     env:
@@ -14,15 +14,13 @@ jobs:
       GIST_ID: fcb1d163cd79766d2388cfd016023194
       CATEGORY: a
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.15
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
 
-    - name: Check out
-      uses: actions/checkout@v2
-
-    - name: Update gist
-      run: go run .
+      - name: Update gist
+        run: go run .
